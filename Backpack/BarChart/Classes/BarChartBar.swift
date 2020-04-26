@@ -103,6 +103,7 @@ public final class BPKBarChartBar: UIControl {
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
             backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
             miniFlareView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            
             titleLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             subtitleLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             titleLabel.topAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: BPKSpacingMd),
