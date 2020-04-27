@@ -52,6 +52,13 @@ public final class BPKBarChart: UIView {
         }
     }
 
+    /// The collection view used by the bar chart
+    public var collectionView: BPKBarChartCollectionView? {
+        get {
+            return barChartCollectionView
+        }
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

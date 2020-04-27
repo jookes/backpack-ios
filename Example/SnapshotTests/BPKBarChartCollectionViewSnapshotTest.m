@@ -34,9 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createCollectionViewDefault {
-    BPKBarChartCollectionView *view = [[BPKBarChartCollectionView alloc] initWithFrame:CGRectMake(0, 0, 500, 200) collectionViewLayout:[UICollectionViewFlowLayout new]];
+    BPKBarChart *view = [[BPKBarChart alloc] initWithFrame:CGRectMake(0, 0, 500, 200)];
     view.barChartDataSource = self;
     view.backgroundColor = BPKColor.hillier;
+        view.title = @"Departure";
+        view.dataKeyLabel = @"Price";
+        view.noDataKeyLabel = @"No price";
 
     return view;
 }
@@ -50,12 +53,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (UIView *)createCollectionViewDefaultSelected {
-    BPKBarChartCollectionView *view = [[BPKBarChartCollectionView alloc] initWithFrame:CGRectMake(0, 0, 500, 200) collectionViewLayout:[UICollectionViewFlowLayout new]];
+    BPKBarChart *view = [[BPKBarChart alloc] initWithFrame:CGRectMake(0, 0, 500, 200)];
     view.barChartDataSource = self;
     view.backgroundColor = BPKColor.hillier;
+    view.title = @"Departure";
+    view.dataKeyLabel = @"Price";
+    view.noDataKeyLabel = @"No price";
 
     NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:3];
-    [view selectItemAtIndexPath:indexPath animated:false scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+    [view.collectionView selectItemAtIndexPath:indexPath animated:false scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
 
     return view;
 }
