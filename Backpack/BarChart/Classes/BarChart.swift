@@ -158,6 +158,8 @@ extension BPKBarChart: UICollectionViewDataSource {
         cell.barChartBar.subtitle = barChartDataSource?.barChart(self, subtitleForBarAtIndex: indexPath)
         cell.barChartBar.fillValue = barChartDataSource?.barChart(self, fillValueForBarAtIndex: indexPath)
         cell.barChartBar.valueDescription = barChartDataSource?.barChart(self, valueDescriptionForBarAtIndex: indexPath)
+        cell.barChartBar.accessibilityLabel =
+            barChartDataSource?.barChart(self, accessibilityLabelForBarAtIndex: indexPath)
         cell.isSelected = selectedIndexPath == indexPath
         return cell
     }

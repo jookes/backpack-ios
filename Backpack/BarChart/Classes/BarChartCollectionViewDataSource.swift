@@ -41,6 +41,13 @@ public protocol BPKBarChartCollectionViewDataSource {
     /// - returns: The title to display above the section of the bar chart
     func barChart(_ barChart: BPKBarChart, titleForSection section: Int) -> String
 
+    /// The description to provide to screen-readers for a specific bar
+    ///
+    /// - parameter barChart: The BPKBarChart in question
+    /// - parameter atIndex: The index of the bar in question
+    /// - returns: The descriptive label for the bar
+    func barChart(_ barChart: BPKBarChart, accessibilityLabelForBarAtIndex atIndex: IndexPath) -> String
+
     /// The title to show underneath a specific bar
     ///
     /// - parameter barChart: The BPKBarChart in question

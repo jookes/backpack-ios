@@ -40,6 +40,13 @@ class BarChartsViewController: UIViewController {
 }
 
 extension BarChartsViewController: BPKBarChartCollectionViewDataSource {
+    func barChart(_ barChart: BPKBarChart, accessibilityLabelForBarAtIndex atIndex: IndexPath) -> String {
+        let subtitle = self.barChart(barChart, subtitleForBarAtIndex: atIndex)
+        let section = self.barChart(barChart, titleForSection: atIndex.section)
+        let description = self.barChart(barChart, valueDescriptionForBarAtIndex: atIndex)
+        return "\(subtitle) \(section) \(description)"
+    }
+
     func barChart(_ barChart: BPKBarChart, titleForSection section: Int) -> String {
         switch section {
         case 0:

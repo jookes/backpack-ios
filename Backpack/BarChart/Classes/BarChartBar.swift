@@ -27,6 +27,18 @@ public final class BPKBarChartBar: UIControl {
         didSet {
             updateBarColor()
             updateminiFlareViewAppearance()
+            updateAccessibilityTraits()
+        }
+    }
+
+    override public var accessibilityLabel: String? {
+        didSet {
+            if accessibilityLabel != nil {
+                isAccessibilityElement = true
+                backgroundView.isAccessibilityElement = false
+                titleLabel.isAccessibilityElement = false
+                subtitleLabel.isAccessibilityElement = false
+            }
         }
     }
 
@@ -111,6 +123,7 @@ public final class BPKBarChartBar: UIControl {
         ])
         updateBarHeight()
         updateminiFlareViewAppearance()
+        updateAccessibilityTraits()
     }
 
     lazy fileprivate var backgroundView: UIView = {
@@ -192,5 +205,15 @@ public final class BPKBarChartBar: UIControl {
         miniFlareViewPositionAnchor?.isActive = true
 
         miniFlareView.isHidden = valueDescription == nil || !isSelected
+    }
+
+    fileprivate func updateAccessibilityTraits() {
+        accessibilityTraits.insert(.button)
+        accessibilityTraits.remove(.notEnabled)
+        if isSelected {
+            accessibilityTraits.insert(.selected)
+        } else {
+            accessibilityTraits.remove(.selected)
+        }
     }
 }
