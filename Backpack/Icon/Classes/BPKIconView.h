@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param size The size the icon should be displayed at.
  * @return An initialized Backpack icon view
  */
-- (instancetype)initWithIconName:(nullable BPKIconName)iconName size:(BPKIconSize)size;
+- (instancetype)initWithIconName:(nullable BPKIconName)iconName;
 
 /**
  * The name of the icon currently being displayed. Setting updates

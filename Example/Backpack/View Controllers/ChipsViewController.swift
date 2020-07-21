@@ -28,19 +28,19 @@ class ChipsViewController: UIViewController {
     var backgroundTint: UIColor?
     var style: BPKChipStyle?
     fileprivate static var chips = [
-        (title: "Afghanistan", selected: false, enabled: false, iconName: BPKIconName.award),
-        (title: "Belgium", selected: false, enabled: true, iconName: BPKIconName.account),
-        (title: "Canada", selected: false, enabled: true, iconName: BPKIconName.adult),
-        (title: "Denmark", selected: false, enabled: true, iconName: BPKIconName.airline),
-        (title: "Ethiopia", selected: true, enabled: true, iconName: BPKIconName.arrowUp),
-        (title: "Fiji", selected: false, enabled: true, iconName: BPKIconName.alertAdd),
-        (title: "Germany", selected: false, enabled: true, iconName: BPKIconName.accountIdCard),
-        (title: "Honduras", selected: false, enabled: true, iconName: BPKIconName.alertActive),
-        (title: "India", selected: true, enabled: true, iconName: BPKIconName.baggageAdd),
-        (title: "Jamaica", selected: false, enabled: true, iconName: BPKIconName.calendar),
-        (title: "Kosovo", selected: false, enabled: false, iconName: BPKIconName.cafe),
-        (title: "Lesotho", selected: false, enabled: true, iconName: BPKIconName.close),
-        (title: "Madagascar", selected: true, enabled: true, iconName: BPKIconName.camera)
+        (title: "Afghanistan", selected: false, enabled: false, iconName: BPKIconName.awardSm),
+        (title: "Belgium", selected: false, enabled: true, iconName: BPKIconName.accountSm),
+        (title: "Canada", selected: false, enabled: true, iconName: BPKIconName.adultSm),
+        (title: "Denmark", selected: false, enabled: true, iconName: BPKIconName.airlineSm),
+        (title: "Ethiopia", selected: true, enabled: true, iconName: BPKIconName.arrowUpSm),
+        (title: "Fiji", selected: false, enabled: true, iconName: BPKIconName.alertAddSm),
+        (title: "Germany", selected: false, enabled: true, iconName: BPKIconName.accountIdCardSm),
+        (title: "Honduras", selected: false, enabled: true, iconName: BPKIconName.alertActiveSm),
+        (title: "India", selected: true, enabled: true, iconName: BPKIconName.baggageAddSm),
+        (title: "Jamaica", selected: false, enabled: true, iconName: BPKIconName.calendarSm),
+        (title: "Kosovo", selected: false, enabled: false, iconName: BPKIconName.cafeSm),
+        (title: "Lesotho", selected: false, enabled: true, iconName: BPKIconName.closeSm),
+        (title: "Madagascar", selected: true, enabled: true, iconName: BPKIconName.cameraSm)
     ]
 
     fileprivate static let cellIdentifier = "ChipPreviewCollectionViewCell"

@@ -75,11 +75,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupWithSize:(BPKStarSize)size {
 
-    self.starView = [[BPKIconView alloc] initWithIconName:BPKIconNameStar size:BPKIconSizeSmall];
+    self.starView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarLg];
     self.starView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.starView];
 
-    self.halfStarView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarHalf size:BPKIconSizeSmall];
+    self.halfStarView = [[BPKIconView alloc] initWithIconName:BPKIconNameStarHalfLg];
     self.halfStarView.flipsForRightToLeft = YES;
     self.halfStarView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.halfStarView];

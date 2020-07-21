@@ -1,6 +1,9 @@
 # Unreleased
 > Place your changes below this line.
 
+**Breaking:**
+ - Backpack/Icon:
+   - We've removed the `size` parameter from the constructors of `BPKIcon`. Size should now be specified using the Icon identifier. For example, `BPKIconNameAlertActiveSm` or `BPKIconNameAlertActiveLg`.
 
 ## How to write a good changelog entry
 1. Add 'Breaking', 'Added' or 'Fixed' in bold depending on if the change will be major, minor or patch according to [semver](semver.org).

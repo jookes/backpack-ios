@@ -30,7 +30,7 @@ class IconsPreviewCollectionViewCell: UICollectionViewCell {
     private let imageView: BPKIconView
 
     override init(frame: CGRect) {
-        self.imageView = BPKIconView(iconName: nil, size: .large)
+        self.imageView = BPKIconView(iconName: nil)
 
         super.init(frame: frame)
 

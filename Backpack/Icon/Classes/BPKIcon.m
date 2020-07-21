@@ -29,7 +29,7 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 @property(class, nonatomic, readonly) NSParagraphStyle *paragraphStyle;
 
 + (NSBundle *)iconBundle;
-+ (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color size:(BPKIconSize)size;
++ (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color;
 + (NSString *)stringForUnicodeCodepoint:(nullable NSString *)codepoint;
 @end
 
@@ -80,16 +80,17 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
 #endif
 }
 
-+ (UIImage *)templateIconNamed:(NSString *)name size:(BPKIconSize)size {
-    UIImage *image = [self iconNamed:name color:UIColor.blackColor size:size];
++ (UIImage *)templateIconNamed:(NSString *)name {
+    UIImage *image = [self iconNamed:name color:UIColor.blackColor];
 
     return [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
-+ (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color size:(BPKIconSize)size {
++ (UIImage *)iconNamed:(NSString *)name color:(UIColor *)color {
+    BPKIconSize size = [BPKIcon sizeFromIconName:name];
     CGSize iconSize = [self concreteSizeForIconSize:size];
 
-    NSString *cacheKey = [self cacheKeyForIconNamed:name withColor:color size:size];
+    NSString *cacheKey = [self cacheKeyForIconNamed:name withColor:color];
     UIImage *icon = [self.imageCache objectForKey:cacheKey];
 
     if (icon) {
@@ -200,28 +201,11 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
     return iconBundle;
 }
 
-+ (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color size:(BPKIconSize)size {
-    NSString *sizeName;
-
-    switch (size) {
-    case BPKIconSizeSmall:
-        sizeName = @"sm";
-        break;
-    case BPKIconSizeLarge:
-        sizeName = @"lg";
-        break;
-    case BPKIconSizeXLarge:
-        sizeName = @"xl";
-        break;
-    default:
-        NSAssert(NO, @"Unknown icon size");
-        sizeName = @"unknown";
-    }
-
++ (NSString *)cacheKeyForIconNamed:(NSString *)name withColor:(UIColor *)color {
     CGFloat const *components = CGColorGetComponents(color.CGColor);
 
     return [NSString
-        stringWithFormat:@"%@%@%f%f%f%f", name, sizeName, components[0], components[1], components[2], components[3]];
+        stringWithFormat:@"%@%f%f%f%f", name, components[0], components[1], components[2], components[3]];
 }
 
 + (CGSize)concreteSizeForIconSize:(BPKIconSize)size {
@@ -240,6 +224,13 @@ NSString *const BPKIconFontName = @"BpkIconIOS";
         return CGSizeMake(16, 16);
         break;
     }
+}
+
++ (BPKIconSize)sizeFromIconName:(NSString *)name {
+    if([name hasSuffix:@"Sm"]) {
+        return BPKIconSizeSmall;
+    }
+    return BPKIconSizeLarge;
 }
 
 + (NSString *)stringForUnicodeCodepoint:(nullable NSString *)codepoint {
