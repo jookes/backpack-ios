@@ -2,6 +2,10 @@
 
 > Place your changes below this line.
 
+**BREAKING:**
+
+ - Backpack
+   - Icons are now specified using just the `BPKIconName` enum (eg `BPKIconNameAccessibilityLg`) instead of providing icon name and size separately. This should avoid a situation where an icon is being used at the wrong size.
 
 ## How to write a good changelog entry
 
