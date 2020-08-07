@@ -34,6 +34,8 @@ typedef NS_ENUM(NSUInteger, BPKSpinnerStyle) {
     BPKSpinnerStylePrimary = 0,
     BPKSpinnerStyleDark = 1,
     BPKSpinnerStyleLight = 2,
+    BPKSpinnerStyleDarkDynamic = 3,
+    BPKSpinnerStyleLightDynamic = 4,
 };
 
 NS_ASSUME_NONNULL_BEGIN

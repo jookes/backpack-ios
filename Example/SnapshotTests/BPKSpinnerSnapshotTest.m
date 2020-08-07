@@ -78,9 +78,13 @@ NS_ASSUME_NONNULL_BEGIN
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeDefault themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeDefault themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeDefault themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDarkDynamic size:BPKSpinnerSizeDefault themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLightDynamic size:BPKSpinnerSizeDefault themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStylePrimary size:BPKSpinnerSizeSmall themed:themed],
         [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDark size:BPKSpinnerSizeSmall themed:themed],
-        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall themed:themed]
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLight size:BPKSpinnerSizeSmall themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleDarkDynamic size:BPKSpinnerSizeSmall themed:themed],
+        [self createSpinnerForSnapshotTestWithStyle:BPKSpinnerStyleLightDynamic size:BPKSpinnerSizeSmall themed:themed]
     ];
 }
 

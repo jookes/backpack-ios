@@ -24,6 +24,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKSpinner ()
+@property(nonatomic, weak) UIColor *lightColor;
+@property(nonatomic, weak) UIColor *darkColor;
 @end
 
 @implementation BPKSpinner
@@ -113,16 +115,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)colorForSpinnerStyle:(BPKSpinnerStyle)style {
     switch (style) {
-    case BPKSpinnerStylePrimary:
-        return [BPKColor dynamicColorWithLightVariant:BPKColor.skyBlue darkVariant:BPKColor.white];
-    case BPKSpinnerStyleDark:
-        return BPKColor.skyGrayTint01;
-    case BPKSpinnerStyleLight:
-        return BPKColor.white;
-    default:
-        NSAssert(NO, @"Undefined style: %d", (int)style);
-        break;
+        case BPKSpinnerStylePrimary:
+            return [BPKColor dynamicColorWithLightVariant:BPKColor.skyBlue darkVariant:BPKColor.white];
+        case BPKSpinnerStyleDark:
+            return BPKSpinner.darkColor;
+        case BPKSpinnerStyleLight:
+            return BPKSpinner.lightColor;
+        case BPKSpinnerStyleDarkDynamic:
+            return [BPKColor dynamicColorWithLightVariant:BPKSpinner.darkColor darkVariant:BPKSpinner.lightColor];
+        case BPKSpinnerStyleLightDynamic:
+            return [BPKColor dynamicColorWithLightVariant:BPKSpinner.lightColor darkVariant:BPKSpinner.darkColor];
+        default:
+            NSAssert(NO, @"Undefined style: %d", (int)style);
+            break;
     }
+}
+
++ (UIColor *)lightColor {
+    return BPKColor.white;
+}
+
++ (UIColor *)darkColor {
+    return BPKColor.skyGrayTint01;
 }
 
 @end
