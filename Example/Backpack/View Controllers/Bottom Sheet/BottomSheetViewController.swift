@@ -21,6 +21,7 @@ import Backpack
 
 final class BottomSheetViewController: UITableViewController {
 
+    @IBOutlet var simpleScrollViewBottomSheet: UITableViewCell!
     @IBOutlet var scrollViewBottomSheet: UITableViewCell!
     @IBOutlet var bottomSectionBottomSheet: UITableViewCell!
     @IBOutlet var sheetPresentingSheet: UITableViewCell!
@@ -43,6 +44,16 @@ extension BottomSheetViewController {
 
         let cell = tableView.cellForRow(at: indexPath)
         switch cell {
+        case simpleScrollViewBottomSheet:
+            let content = BottomSheetSimpleScrollableContentViewController()
+            let badge = BPKBadge(type: .success, message: "Stuff")
+            content.scrollView.addSubview(badge)
+
+            let wrappedContent = rootViewController.createIdenticalContainerController(forRootController: content)
+
+            let sheet = BPKBottomSheet(contentViewController: wrappedContent,
+                                    scrollViewToTrack: content.scrollView)
+            sheet.present(in: self, animated: true, completion: nil)
         case scrollViewBottomSheet:
             guard let content = BottomSheetScrollableContentViewController.make() else { return }
 
