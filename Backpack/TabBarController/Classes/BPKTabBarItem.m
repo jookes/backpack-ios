@@ -21,6 +21,12 @@
 #import <Backpack/Color.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@interface BPKTabBarItem ()
+@property(nonatomic, nullable, strong) UIColor *internalBadgeColor;
+@property(nonatomic, nullable, strong) NSString *internalBadgeValue;
+@property(nonatomic, nullable, strong) UIImage *internalImage;
+@end
+
 
 @implementation BPKTabBarItem
 
@@ -45,6 +51,45 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setup {
     self.badgeColor = BPKColor.panjin;
 }
+
+- (void)setImage:(UIImage *_Nullable)image {
+    self.internalImage = image;
+
+    [self updateAppearance];
+}
+
+- (void)setBadgeColor:(UIColor *_Nullable)badgeColor {
+    self.internalBadgeColor = badgeColor;
+
+    [self updateAppearance];
+}
+
+- (void)setBadgeValue:(NSString *_Nullable)badgeValue {
+    self.internalBadgeValue = badgeValue;
+
+    [self updateAppearance];
+}
+
+-(UIImage * _Nullable)tabImageWithDot:(UIImage * _Nullable)image dotColor:(UIColor * _Nullable)dotColor {
+    // Cache image + dotColor + appearance so that we don't need to repeat this?
+    
+}
+
+- (void)updateAppearance {
+    if(self.internalBadgeValue == nil || ![self.internalBadgeValue isEqualToString:@""]) {
+        [super setBadgeValue:self.internalBadgeValue];
+        [super setBadgeColor:self.internalBadgeColor];
+        [super setImage:self.internalImage];
+        return;
+    }
+
+    // if badgeValue is "" then we need to work our magic
+    [super setBadgeValue:self.internalBadgeValue];
+    [super setBadgeColor:BPKColor.clear];
+    [super setImage:[self tabImageWithDot:self.internalImage]]; // calculate image with dot
+}
+
+// TODO When appearance changes, call updateAppearance
 
 @end
 
