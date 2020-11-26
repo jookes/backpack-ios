@@ -18,17 +18,27 @@
 
 #import "UIView+BPKRTL.h"
 
+#import <Backpack/Color.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation UITabBarItem (Backpack)
 
 - (void)bpk_addDotWithColor:(UIColor *)color {
-    self.badgeColor = color;
-    self.badgeValue = @"";
+    self.badgeColor = BPKColor.clear;
+    self.badgeValue = @"•";
+    self.accessibilityValue = nil; // needed to preserve the empty accessibility state of the badge
+
+    NSMutableDictionary *attributesDictionary = [NSMutableDictionary dictionary];
+    [attributesDictionary setObject:[UIFont fontWithName:@"Didot" size:24] forKey:NSFontAttributeName];
+    [attributesDictionary setObject:color forKey:NSForegroundColorAttributeName];
+    [self setBadgeTextAttributes:attributesDictionary forState:UIControlStateNormal];
 }
 
 - (void)bpk_removeDot {
+    self.badgeColor = BPKColor.panjin;
     self.badgeValue = nil;
+    [self setBadgeTextAttributes:nil forState:UIControlStateNormal];
 }
 
 @end
