@@ -82,10 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
         [self.trailingAnchor constraintEqualToAnchor:self.calloutView.trailingAnchor],
         [self.bottomAnchor constraintEqualToAnchor:self.calloutView.bottomAnchor]
     ]];
-    self.dotView.backgroundColor = BPKColor.skyBlue;
-    self.dotView.layer.borderColor = BPKColor.white.CGColor;
-    self.dotView.layer.borderWidth = BPKSpacingSm/2;
-    self.dotView.layer.cornerRadius = self.annotationDotHeight/2;
+    
     [self updateAppearance];
 }
 
