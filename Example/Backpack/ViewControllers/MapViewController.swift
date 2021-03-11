@@ -75,6 +75,8 @@ class MapViewController: UIViewController {
         london.alwaysShowCallout = true
         london.coordinate = CLLocationCoordinate2D(latitude: 51.5122, longitude: -0.12355)
         mapView.addAnnotation(london)
+
+        mapView.showAnnotations(mapView.annotations, animated: true)
     }
 }
 

@@ -108,7 +108,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     if(self.annotationView.selected) {
-        self.label.fontStyle = BPKFontStyleTextBaseEmphasized;
         self.backgroundView.backgroundColor = BPKColor.skyBlue;
         self.contentView.backgroundColor = BPKColor.white;
         self.contentColor = BPKColor.skyBlue;

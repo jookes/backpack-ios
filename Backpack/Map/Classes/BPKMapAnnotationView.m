@@ -28,10 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BPKMapAnnotationView()
 @property(nonatomic, nullable, readonly) BPKMapAnnotation *bpk_annotation;
-@property(nonatomic, nullable, strong) UIView *dotView;
 @property(nonatomic, strong) BPKMapAnnotationViewCalloutView *calloutView;
-@property(nonatomic, readonly) CGFloat annotationHitAreaHeight;
-@property(nonatomic, readonly) CGFloat annotationDotHeight;
 
 @end
 
@@ -75,37 +72,21 @@ NS_ASSUME_NONNULL_BEGIN
     self.hasBeenSelected = false;
     [self updateImage];
 
-    self.dotView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self addSubview:self.dotView];
-    self.dotView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
+    self.calloutView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.calloutView];
+
     [NSLayoutConstraint activateConstraints:@[
-        [self.dotView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.dotView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.trailingAnchor constraintEqualToAnchor:self.dotView.trailingAnchor],
-        [self.bottomAnchor constraintEqualToAnchor:self.dotView.bottomAnchor],
-        [self.dotView.widthAnchor constraintEqualToConstant:self.annotationDotHeight],
-        [self.dotView.heightAnchor constraintEqualToConstant:self.annotationDotHeight]
+        [self.calloutView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.calloutView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.trailingAnchor constraintEqualToAnchor:self.calloutView.trailingAnchor],
+        [self.bottomAnchor constraintEqualToAnchor:self.calloutView.bottomAnchor]
     ]];
     self.dotView.backgroundColor = BPKColor.skyBlue;
     self.dotView.layer.borderColor = BPKColor.white.CGColor;
     self.dotView.layer.borderWidth = BPKSpacingSm/2;
     self.dotView.layer.cornerRadius = self.annotationDotHeight/2;
     [self updateAppearance];
-}
-
-- (BPKMapAnnotationViewCalloutView *)calloutView {
-    if(_calloutView == nil && self.dotView != nil) {
-        BPKMapAnnotationViewCalloutView *calloutView = [[BPKMapAnnotationViewCalloutView alloc] initWithAnnotationView:self];
-        [self addSubview:calloutView];
-        calloutView.translatesAutoresizingMaskIntoConstraints = NO;
-        [NSLayoutConstraint activateConstraints:@[
-            [calloutView.centerXAnchor constraintEqualToAnchor:self.dotView.centerXAnchor],
-            [calloutView.bottomAnchor constraintEqualToAnchor:self.dotView.topAnchor constant:BPKSpacingSm / 2]
-        ]];
-        _calloutView = calloutView;
-    }
-
-    return _calloutView;
 }
 
 -(void)updateImage {
@@ -138,21 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)updateAppearance {
     [self updateAccessibilityProperties];
     self.enabled = self.bpk_annotation.enabled;
-
-    BOOL shouldShowCallout = self.selected || self.bpk_annotation.alwaysShowCallout;
-    if (shouldShowCallout) {
-        self.calloutView.hidden = false;
-    }
-
-    // Using `_calloutView` so that if it is not already created we don't access the lazy property
-    if (!shouldShowCallout && _calloutView != nil) {
-        self.calloutView.hidden = true;
-    }
-
-    // Using `_calloutView` so that if it is not already created we don't access the lazy property
-    if (_calloutView != nil) {
-        [self.calloutView update];
-    }
+    [self.calloutView update];
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection {
@@ -166,22 +133,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)prepareForReuse {
     [super prepareForReuse];
     self.hasBeenSelected = false;
-}
-
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *_Nullable)event {
-    CGFloat insetBy = self.annotationHitAreaHeight - self.annotationDotHeight;
-    CGRect hitArea = CGRectInset(self.bounds, insetBy, insetBy);
-    return CGRectContainsPoint(hitArea, point);
-}
-
-#pragma mark - constants
-
-- (CGFloat)annotationDotHeight {
-    return BPKSpacingBase;
-}
-
-- (CGFloat)annotationHitAreaHeight {
-    return 44;
 }
 
 @end
