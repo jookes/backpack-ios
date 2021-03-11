@@ -41,7 +41,6 @@ class MapViewController: UIViewController {
 
         let edinburgh = BPKMapAnnotation()
         edinburgh.title = "Edinburgh"
-        edinburgh.alwaysShowCallout = true
         edinburgh.coordinate = CLLocationCoordinate2D(latitude: 55.95338, longitude: -3.189977)
         mapView.addAnnotation(edinburgh)
 
@@ -49,13 +48,11 @@ class MapViewController: UIViewController {
         manchester.title = "Manchester"
         manchester.iconName = .airports
         manchester.accessibilityLabel = "Manchester airport"
-        manchester.alwaysShowCallout = true
         manchester.coordinate = CLLocationCoordinate2D(latitude: 53.483835, longitude: -2.24067)
         mapView.addAnnotation(manchester)
 
         let newcastle = BPKMapAnnotation()
         newcastle.title = "Newcastle"
-        newcastle.alwaysShowCallout = true
         newcastle.enabled = false
         newcastle.coordinate = CLLocationCoordinate2D(latitude: 54.973042, longitude: -1.61699)
         mapView.addAnnotation(newcastle)
@@ -72,7 +69,6 @@ class MapViewController: UIViewController {
 
         let london = BPKMapAnnotation()
         london.title = "London"
-        london.alwaysShowCallout = true
         london.coordinate = CLLocationCoordinate2D(latitude: 51.5122, longitude: -0.12355)
         mapView.addAnnotation(london)
 

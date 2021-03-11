@@ -29,11 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BPKMapAnnotation : MKPointAnnotation
 
 /**
- * Whether to always show the callout. If false, the callout will only be shown when the annotation is selected.
- */
-@property(nonatomic, assign) BOOL alwaysShowCallout;
-
-/**
  * Whether the annotation is enabled. If false, a user cannot interact with the annotation.
  */
 @property(nonatomic, assign) BOOL enabled;
